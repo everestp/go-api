@@ -12,6 +12,7 @@ import (
 	"time"
 
 	"github.com/everestp/go-api/internal/config"
+	"github.com/everestp/go-api/internal/http/handlers/student"
 )
 
 func main() {
@@ -23,11 +24,9 @@ func main() {
 
 	//setup router
  router := http.NewServeMux()
+router.HandleFunc("POST /api/students", student.New())
 
 
- router.HandleFunc("GET /",func(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Welcome to student api"))
- })
 	// setuop server
 	 server := http.Server{
 		Addr: cfg.HTTPServer.Addr,
